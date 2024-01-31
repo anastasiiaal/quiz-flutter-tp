@@ -10,9 +10,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class FirstPageState extends State<FirstPage> {
-
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -113,13 +110,44 @@ class FirstPageState extends State<FirstPage> {
                   ],
                 ),
                 const SeparatorLine(),
+                Row(children: [
+                  Container(
+                    width: width - 24,
+                    margin: const EdgeInsets.fromLTRB(0, 40, 0, 50),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.deepPurple[200],
+                          radius: 136,
+                        ),
+                        CircleAvatar(
+                            backgroundColor: Colors.deepPurple[100],
+                            foregroundImage:
+                            const AssetImage('images/cow.jpeg'),
+                            radius: 130)
+                      ],
+                    ),
+                  ),
+                ]),
+                Row(
+                  children: [
+                    Container(
+                      width: width-24,
+                      margin: const EdgeInsets.only(bottom: 30),
+                      child: const Text(
+                        'L\'homme a marché sur la Lune avant d\'inventer la valise à roulette',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                const SeparatorLine(),
               ],
             ),
           ),
         )
     );
   }
-
-
-
 }
