@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:quiz_flutter_tp/widgets/separator_line.dart';
+import '../model/question.dart';
+import '../model/question_data.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -10,6 +12,9 @@ class FirstPage extends StatefulWidget {
 }
 
 class FirstPageState extends State<FirstPage> {
+  int currentQuestionIndex = 0;
+  final QuestionData questionData = QuestionData();
+
   @override
   Widget build(BuildContext context) {
 
@@ -21,8 +26,7 @@ class FirstPageState extends State<FirstPage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.deepPurple[200],
-          // title: const TextTitleWidget(title: "user page")
-          title: const Text('Quiz time!'),
+          title: const Text('✨ Quiz time! ✨', style: TextStyle(fontWeight: FontWeight.bold),),
           centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -65,7 +69,7 @@ class FirstPageState extends State<FirstPage> {
                               style: ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
                               ),
-                              child: const Text('Start the quiz!', style: TextStyle(
+                              child: const Text('C\'est parti !', style: TextStyle(
                                 color: Colors.white,
                               )),
                             ),
@@ -84,6 +88,7 @@ class FirstPageState extends State<FirstPage> {
   }
 
   Widget QuizPage(BuildContext context) {
+    Question currentQuestion = questionData.questionList[currentQuestionIndex];
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -102,10 +107,10 @@ class FirstPageState extends State<FirstPage> {
                   children: [
                     SizedBox(
                       width: width-24,
-                      child: const Text(
-                        'Question 1/10',
+                      child: Text(
+                        'Question ${currentQuestionIndex + 1}/10',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                   ],
@@ -125,7 +130,7 @@ class FirstPageState extends State<FirstPage> {
                         CircleAvatar(
                             backgroundColor: Colors.deepPurple[100],
                             foregroundImage:
-                            const AssetImage('images/cow.jpeg'),
+                            AssetImage('${currentQuestion.getImage()}'),
                             radius: 130)
                       ],
                     ),
@@ -138,8 +143,8 @@ class FirstPageState extends State<FirstPage> {
                       child: Container(
                         width: width - 44,
                         margin: const EdgeInsets.only(bottom: 20),
-                        child: const Text(
-                          'L\'homme a marché sur la Lune avant d\'inventer la valise à roulette',
+                        child: Text(
+                          '${currentQuestion.question}',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                         ),
@@ -226,6 +231,7 @@ class FirstPageState extends State<FirstPage> {
           child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
+              goNext();
             },
             style: ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
@@ -271,5 +277,21 @@ class FirstPageState extends State<FirstPage> {
         ),
       ],
     );
+  }
+
+  void goNext () {
+    if (currentQuestionIndex < questionData.questionList.length - 1) {
+      setState(() {
+        currentQuestionIndex++;
+      });
+    } else {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return endGame();
+        },
+      );
+    }
   }
 }
