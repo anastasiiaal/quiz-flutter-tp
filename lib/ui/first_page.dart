@@ -11,6 +11,7 @@ class FirstPage extends StatefulWidget {
 class FirstPageState extends State<FirstPage> {
 
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -55,11 +56,15 @@ class FirstPageState extends State<FirstPage> {
                           ]
                         ),
                         const SizedBox(height: 10),
-                        const Column(
+                        Column(
                           children: [
                             ElevatedButton(
-                              onPressed: null,
-                              child: Text('Start the quiz!'),
+                              // onPressed: null,
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (BuildContext context) => QuizPage(context)));
+                              },
+                              child: const Text('Start the quiz!'),
                             ),
                           ],
                         )
@@ -72,6 +77,20 @@ class FirstPageState extends State<FirstPage> {
           ),
         )
       ),
+    );
+  }
+
+  Widget QuizPage(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple[200],
+        // title: const TextTitleWidget(title: "user page")
+        title: const Text('Score'),
+        centerTitle: true,
+      ),
+        body: const SingleChildScrollView(
+          child: Text("Hello"),
+        )
     );
   }
 
