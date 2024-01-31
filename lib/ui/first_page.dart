@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:quiz_flutter_tp/widgets/separator_line.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -59,12 +60,16 @@ class FirstPageState extends State<FirstPage> {
                         Column(
                           children: [
                             ElevatedButton(
-                              // onPressed: null,
                               onPressed: () {
                                 Navigator.of(context).push(
                                     MaterialPageRoute(builder: (BuildContext context) => QuizPage(context)));
                               },
-                              child: const Text('Start the quiz!'),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
+                              ),
+                              child: const Text('Start the quiz!', style: TextStyle(
+                                color: Colors.white,
+                              )),
                             ),
                           ],
                         )
@@ -81,6 +86,7 @@ class FirstPageState extends State<FirstPage> {
   }
 
   Widget QuizPage(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
@@ -88,11 +94,32 @@ class FirstPageState extends State<FirstPage> {
         title: const Text('Score'),
         centerTitle: true,
       ),
-        body: const SingleChildScrollView(
-          child: Text("Hello"),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+            child: Column(
+              children: [
+                const SizedBox(height: 18),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: width-24,
+                      child: const Text(
+                        'Question 1/10',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                const SeparatorLine(),
+              ],
+            ),
+          ),
         )
     );
   }
+
 
 
 }
