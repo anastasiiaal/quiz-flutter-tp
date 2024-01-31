@@ -132,13 +132,16 @@ class FirstPageState extends State<FirstPage> {
                 ]),
                 Row(
                   children: [
-                    Container(
-                      width: width-24,
-                      margin: const EdgeInsets.only(bottom: 30),
-                      child: const Text(
-                        'L\'homme a marché sur la Lune avant d\'inventer la valise à roulette',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        width: width - 44,
+                        margin: const EdgeInsets.only(bottom: 20),
+                        child: const Text(
+                          'L\'homme a marché sur la Lune avant d\'inventer la valise à roulette',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
                       ),
                     ),
                   ],
