@@ -30,6 +30,7 @@ class FirstPageState extends State<FirstPage> {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
+              const SizedBox(height: 50),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -88,7 +89,7 @@ class FirstPageState extends State<FirstPage> {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
         // title: const TextTitleWidget(title: "user page")
-        title: const Text('Score'),
+        title: const Text('Score :'),
         centerTitle: true,
       ),
         body: SingleChildScrollView(
@@ -163,12 +164,12 @@ class FirstPageState extends State<FirstPage> {
                             },
                           );
                         },
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.lightGreen),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(Colors.lightGreen[400]),
                         ),
-                        child: const Text('Vrai', style: TextStyle(
+                        child: const Text('👍🏻', style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: 40,
                           fontWeight: FontWeight.bold
                         )),
                       ),
@@ -178,16 +179,16 @@ class FirstPageState extends State<FirstPage> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return showAnswer();
+                              return endGame();
                             },
                           );
                         },
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+                        style:  ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(Colors.red[300]),
                         ),
-                        child: const Text('Faux', style: TextStyle(
+                        child: const Text('👎🏻', style: TextStyle(
                           color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold
                         )),
                       ),
@@ -232,6 +233,39 @@ class FirstPageState extends State<FirstPage> {
             child: const Text('Question suivante', style: TextStyle(
               color: Colors.white,
               fontSize: 16
+            )),
+          ),
+        ),
+      ],
+    );
+  }
+
+  AlertDialog endGame() {
+    return AlertDialog(
+      title: const Text('Votre score est de 10 points ! 🎉', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            // 'images/result-sup-5.gif',
+            'images/result-und-5.gif',
+            fit: BoxFit.cover,
+            height: 200,
+          )
+        ],
+      ),
+      actions: [
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
+            ),
+            child: const Text('✨ Rejouer !', style: TextStyle(
+                color: Colors.white,
+                fontSize: 16
             )),
           ),
         ),
