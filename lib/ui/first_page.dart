@@ -150,26 +150,42 @@ class FirstPageState extends State<FirstPage> {
                 const SizedBox(height: 18),
                 SizedBox(
                   width: width / 1.3,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                        onPressed: null,
-                        style: ButtonStyle(
+                        onPressed: () {
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return showAnswer();
+                            },
+                          );
+                        },
+                        style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(Colors.lightGreen),
                         ),
-                        child: Text('Vrai !', style: TextStyle(
+                        child: const Text('Vrai', style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.bold
                         )),
                       ),
                       ElevatedButton(
-                        onPressed: null,
-                        style: ButtonStyle(
+                        onPressed: () {
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return showAnswer();
+                            },
+                          );
+                        },
+                        style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
                         ),
-                        child: Text('Faux !', style: TextStyle(
+                        child: const Text('Faux', style: TextStyle(
                           color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.bold
@@ -182,6 +198,44 @@ class FirstPageState extends State<FirstPage> {
             ),
           ),
         )
+    );
+  }
+
+  AlertDialog showAnswer() {
+    return AlertDialog(
+      title: const Text('Bonne réponse !', style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            'images/oui.gif',
+            fit: BoxFit.cover,
+            height: 200,
+          ),
+          const SizedBox(height: 18),
+          const Text(
+            "Le premier alunissage a eu lieu en 1969 tandis que les premières roulettes sont apparues en 1970",
+            textAlign: TextAlign.center
+          ),
+          const SeparatorLine(),
+        ],
+      ),
+      actions: [
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
+            ),
+            child: const Text('Question suivante', style: TextStyle(
+              color: Colors.white,
+              fontSize: 16
+            )),
+          ),
+        ),
+      ],
     );
   }
 }
