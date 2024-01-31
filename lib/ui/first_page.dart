@@ -144,6 +144,37 @@ class FirstPageState extends State<FirstPage> {
                   ],
                 ),
                 const SeparatorLine(),
+                const SizedBox(height: 18),
+                SizedBox(
+                  width: width / 1.3,
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: null,
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(Colors.lightGreen),
+                        ),
+                        child: Text('Vrai !', style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold
+                        )),
+                      ),
+                      ElevatedButton(
+                        onPressed: null,
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+                        ),
+                        child: Text('Faux !', style: TextStyle(
+                          color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold
+                        )),
+                      ),
+                    ]
+                  )
+                )
               ],
             ),
           ),
