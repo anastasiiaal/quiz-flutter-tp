@@ -65,8 +65,9 @@ class FirstPageState extends State<FirstPage> {
                               style: ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
                               ),
-                              child: const Text('C\'est parti !', style: TextStyle(
+                              child: const Text('C\'est parti ! 👌🏻', style: TextStyle(
                                 color: Colors.white,
+                                fontSize: 18
                               )),
                             ),
                           ],

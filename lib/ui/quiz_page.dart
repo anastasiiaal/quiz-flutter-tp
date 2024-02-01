@@ -54,13 +54,13 @@ class QuizPageState extends State<QuizPage> {
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.deepPurple[200],
-                          radius: 136,
+                          radius: 138,
                         ),
                         CircleAvatar(
                             backgroundColor: Colors.deepPurple[100],
                             foregroundImage:
                             AssetImage('${currentQuestion.getImage()}'),
-                            radius: 130)
+                            radius: 140)
                       ],
                     ),
                   ),
@@ -100,24 +100,18 @@ class QuizPageState extends State<QuizPage> {
                             },
                             // onPressed: checkAnswer(currentQuestion.response, true),
                             style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(Colors.lightGreen[400]),
+                              backgroundColor: MaterialStatePropertyAll(Colors.lightGreen[700]),
                             ),
-                            child: const Text('👍🏻', style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold
-                            )),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                              child: Text('👍🏻', style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold
+                              )),
+                            ),
                           ),
                           ElevatedButton(
-                            // onPressed: () {
-                            //   showDialog(
-                            //     barrierDismissible: false,
-                            //     context: context,
-                            //     builder: (BuildContext context) {
-                            //       return endGame();
-                            //     },
-                            //   );
-                            // },
                             onPressed: () {
                               showDialog(
                                 barrierDismissible: false,
@@ -128,13 +122,16 @@ class QuizPageState extends State<QuizPage> {
                               );
                             },
                             style:  ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(Colors.red[300]),
+                              backgroundColor: MaterialStatePropertyAll(Colors.red[900]),
                             ),
-                            child: const Text('👎🏻', style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold
-                            )),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                              child: Text('👎🏻', style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold
+                              )),
+                            ),
                           ),
                         ]
                     )
@@ -157,7 +154,7 @@ class QuizPageState extends State<QuizPage> {
       gifToShow = 'images/oui.gif';
     }
     if (currentQuestionIndex >= questionData.questionList.length - 1) {
-      buttonText = "Résultats";
+      buttonText = "Résultats .. 👀";
     }
 
     return AlertDialog(
@@ -217,14 +214,14 @@ class QuizPageState extends State<QuizPage> {
 
   // endgame popup with results + button to restart game
   AlertDialog endGame() {
-    var textToShow = "Bravo ! T'as eu $score points !";
-    var gifToShow = 'images/result-sup-5.gif';
+    var textToShow = "Bravo ! T'as eu $score points ! 🎉";
+    var gifToShow = 'images/result-sup-5-1.gif';
     if (score <= 5) {
-      textToShow = "Tu m'as déçu.. Que $score bonnes réponses";
+      textToShow = "Tu m'as déçu.. Que $score bonnes réponses 🥲";
       gifToShow = 'images/result-und-5.gif';
     }
     return AlertDialog(
-      title: Text('${textToShow} 🎉', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
+      title: Text('${textToShow}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
