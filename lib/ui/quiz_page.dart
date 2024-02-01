@@ -149,14 +149,21 @@ class QuizPageState extends State<QuizPage> {
   // popup when question answered : says right or wrong
   AlertDialog showAnswer(nbQuestion, bool answer, bool choice) {
     var currentQuestion = nbQuestion;
-    checkAnswer(answer, choice);
+    var textToShow = "Mauvaise réponse 🗿";
+    var gifToShow = 'images/non.gif';
+    if (answer == choice) {
+      score++;
+      textToShow = "Yass, bonne réponse ! ✨";
+      gifToShow = 'images/oui.gif';
+    }
+
     return AlertDialog(
-      title: const Text('Bonne réponse !', style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+      title: Text(textToShow, style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(
-            'images/oui.gif',
+            gifToShow,
             fit: BoxFit.cover,
             height: 200,
           ),
@@ -242,12 +249,5 @@ class QuizPageState extends State<QuizPage> {
         ),
       ],
     );
-  }
-
-  // function to check if user choose correct answer
-  checkAnswer(bool answer, bool choice) {
-    if (answer == choice) {
-      score++;
-    }
   }
 }
