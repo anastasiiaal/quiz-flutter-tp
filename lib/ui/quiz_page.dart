@@ -23,7 +23,7 @@ class QuizPageState extends State<QuizPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurple[200],
-          title: const Text('Score :'),
+          title: Text('Score : ${score}'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -94,10 +94,11 @@ class QuizPageState extends State<QuizPage> {
                                 barrierDismissible: false,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return showAnswer(currentQuestion);
+                                  return showAnswer(currentQuestion, currentQuestion.response, true);
                                 },
                               );
                             },
+                            // onPressed: checkAnswer(currentQuestion.response, true),
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(Colors.lightGreen[400]),
                             ),
@@ -108,12 +109,21 @@ class QuizPageState extends State<QuizPage> {
                             )),
                           ),
                           ElevatedButton(
+                            // onPressed: () {
+                            //   showDialog(
+                            //     barrierDismissible: false,
+                            //     context: context,
+                            //     builder: (BuildContext context) {
+                            //       return endGame();
+                            //     },
+                            //   );
+                            // },
                             onPressed: () {
                               showDialog(
                                 barrierDismissible: false,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return endGame();
+                                  return showAnswer(currentQuestion, currentQuestion.response, false);
                                 },
                               );
                             },
@@ -137,9 +147,9 @@ class QuizPageState extends State<QuizPage> {
   }
 
   // popup when question answered : says right or wrong
-  AlertDialog showAnswer(nbQuestion) {
+  AlertDialog showAnswer(nbQuestion, bool answer, bool choice) {
     var currentQuestion = nbQuestion;
-    print(nbQuestion);
+    checkAnswer(answer, choice);
     return AlertDialog(
       title: const Text('Bonne réponse !', style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
       content: Column(
@@ -180,6 +190,23 @@ class QuizPageState extends State<QuizPage> {
     );
   }
 
+  // function to pass to the next question (triggered on close of showAnswer alert)
+  void goNext () {
+    if (currentQuestionIndex < questionData.questionList.length - 1) {
+      setState(() {
+        currentQuestionIndex++;
+      });
+    } else {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return endGame();
+        },
+      );
+    }
+  }
+
   // endgame popup with results + button to restart game
   AlertDialog endGame() {
     return AlertDialog(
@@ -217,20 +244,10 @@ class QuizPageState extends State<QuizPage> {
     );
   }
 
-  // function to pass to the next question
-  void goNext () {
-    if (currentQuestionIndex < questionData.questionList.length - 1) {
-      setState(() {
-        currentQuestionIndex++;
-      });
-    } else {
-      showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return endGame();
-        },
-      );
+  // function to check if user choose correct answer
+  checkAnswer(bool answer, bool choice) {
+    if (answer == choice) {
+      score++;
     }
   }
 }
