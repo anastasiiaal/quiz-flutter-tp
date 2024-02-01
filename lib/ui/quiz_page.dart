@@ -37,7 +37,7 @@ class QuizPageState extends State<QuizPage> {
                     SizedBox(
                       width: width-24,
                       child: Text(
-                        'Question ${currentQuestionIndex + 1}/10',
+                        'Question ${currentQuestionIndex + 1}/${questionData.questionList.length}',
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -147,14 +147,17 @@ class QuizPageState extends State<QuizPage> {
   }
 
   // popup when question answered : says right or wrong
-  AlertDialog showAnswer(nbQuestion, bool answer, bool choice) {
-    var currentQuestion = nbQuestion;
+  AlertDialog showAnswer(currentQuestion, bool answer, bool choice) {
     var textToShow = "Mauvaise réponse 🗿";
     var gifToShow = 'images/non.gif';
+    var buttonText = "Question suivante";
     if (answer == choice) {
       score++;
       textToShow = "Yass, bonne réponse ! ✨";
       gifToShow = 'images/oui.gif';
+    }
+    if (currentQuestionIndex >= questionData.questionList.length - 1) {
+      buttonText = "Résultats";
     }
 
     return AlertDialog(
@@ -180,14 +183,12 @@ class QuizPageState extends State<QuizPage> {
           child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
-              setState(() {
-                currentQuestionIndex = currentQuestionIndex + 1;
-              });
+              goNext();
             },
             style: ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.deepPurple[500]),
             ),
-            child: const Text('Question suivante', style: TextStyle(
+            child: Text(buttonText, style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16
             )),
@@ -198,32 +199,38 @@ class QuizPageState extends State<QuizPage> {
   }
 
   // function to pass to the next question (triggered on close of showAnswer alert)
-  void goNext () {
-    if (currentQuestionIndex < questionData.questionList.length - 1) {
-      setState(() {
-        currentQuestionIndex++;
-      });
-    } else {
+  goNext () {
+    if (currentQuestionIndex >= questionData.questionList.length - 1) {
       showDialog(
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return endGame();
+          return endGame(score);
         },
       );
+    } else {
+      setState(() {
+        currentQuestionIndex++;
+      });
     }
   }
 
   // endgame popup with results + button to restart game
-  AlertDialog endGame() {
+  AlertDialog endGame(score) {
+    var finalScore = score;
+    var textToShow = "Bravo ! T'as eu $finalScore points !";
+    var gifToShow = 'images/result-sup-5.gif';
+    if (finalScore <= 5) {
+      textToShow = "Tu m'as déçu.. Que $finalScore bonnes réponses";
+      gifToShow = 'images/result-und-5.gif';
+    }
     return AlertDialog(
-      title: const Text('Votre score est de 10 points ! 🎉', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
+      title: Text('${textToShow} 🎉', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(
-            // 'images/result-sup-5.gif',
-            'images/result-und-5.gif',
+            gifToShow,
             fit: BoxFit.cover,
             height: 200,
           )
@@ -235,6 +242,7 @@ class QuizPageState extends State<QuizPage> {
             onPressed: () {
               Navigator.of(context).pop();
               setState(() {
+                score = 0;
                 currentQuestionIndex = 0;
               });
             },
