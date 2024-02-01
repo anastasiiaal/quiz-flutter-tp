@@ -23,7 +23,7 @@ class QuizPageState extends State<QuizPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurple[200],
-          title: Text('Score : ${score}'),
+          title: Text('Score : $score'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -205,7 +205,7 @@ class QuizPageState extends State<QuizPage> {
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return endGame(score);
+          return endGame();
         },
       );
     } else {
@@ -216,12 +216,11 @@ class QuizPageState extends State<QuizPage> {
   }
 
   // endgame popup with results + button to restart game
-  AlertDialog endGame(score) {
-    var finalScore = score;
-    var textToShow = "Bravo ! T'as eu $finalScore points !";
+  AlertDialog endGame() {
+    var textToShow = "Bravo ! T'as eu $score points !";
     var gifToShow = 'images/result-sup-5.gif';
-    if (finalScore <= 5) {
-      textToShow = "Tu m'as déçu.. Que $finalScore bonnes réponses";
+    if (score <= 5) {
+      textToShow = "Tu m'as déçu.. Que $score bonnes réponses";
       gifToShow = 'images/result-und-5.gif';
     }
     return AlertDialog(
