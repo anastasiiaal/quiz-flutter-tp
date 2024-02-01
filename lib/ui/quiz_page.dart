@@ -59,7 +59,7 @@ class QuizPageState extends State<QuizPage> {
                         CircleAvatar(
                             backgroundColor: Colors.deepPurple[100],
                             foregroundImage:
-                            AssetImage('${currentQuestion.getImage()}'),
+                            AssetImage(currentQuestion.getImage()),
                             radius: 146)
                       ],
                     ),
@@ -73,7 +73,7 @@ class QuizPageState extends State<QuizPage> {
                         width: width - 44,
                         margin: const EdgeInsets.only(bottom: 10),
                         child: Text(
-                          '${currentQuestion.question}',
+                          currentQuestion.question,
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                         ),
@@ -158,7 +158,7 @@ class QuizPageState extends State<QuizPage> {
     }
 
     return AlertDialog(
-      title: Text(textToShow, style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+      title: Text(textToShow, style: const TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -169,7 +169,7 @@ class QuizPageState extends State<QuizPage> {
           ),
           const SizedBox(height: 18),
           Text(
-              '${currentQuestion.explanation}',
+              currentQuestion.explanation,
               textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 16),
           ),
@@ -222,7 +222,7 @@ class QuizPageState extends State<QuizPage> {
       gifToShow = 'images/result-und-5.gif';
     }
     return AlertDialog(
-      title: Text('${textToShow}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
+      title: Text(textToShow, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22), textAlign: TextAlign.center),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

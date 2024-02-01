@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_flutter_tp/ui/quiz_page.dart';
-import '../model/question_data.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -10,12 +9,8 @@ class FirstPage extends StatefulWidget {
 }
 
 class FirstPageState extends State<FirstPage> {
-  int currentQuestionIndex = 0;
-  final QuestionData questionData = QuestionData();
-
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double containerWidth = width / 1.1;
 
