@@ -36,7 +36,7 @@ class FirstPageState extends State<FirstPage> {
                   padding: const EdgeInsets.all(5.0),
                   child: SizedBox(
                     width: containerWidth,
-                    height: 500,
+                    height: 510,
                     child: Column(
                       children: [
                         Row(
@@ -54,7 +54,7 @@ class FirstPageState extends State<FirstPage> {
                             ),
                           ]
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 16),
                         Column(
                           children: [
                             ElevatedButton(

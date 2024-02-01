@@ -48,19 +48,19 @@ class QuizPageState extends State<QuizPage> {
                 Row(children: [
                   Container(
                     width: width - 24,
-                    margin: const EdgeInsets.fromLTRB(0, 40, 0, 50),
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.deepPurple[200],
-                          radius: 138,
+                          radius: 144,
                         ),
                         CircleAvatar(
                             backgroundColor: Colors.deepPurple[100],
                             foregroundImage:
                             AssetImage('${currentQuestion.getImage()}'),
-                            radius: 140)
+                            radius: 146)
                       ],
                     ),
                   ),
@@ -71,7 +71,7 @@ class QuizPageState extends State<QuizPage> {
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
                         width: width - 44,
-                        margin: const EdgeInsets.only(bottom: 20),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: Text(
                           '${currentQuestion.question}',
                           textAlign: TextAlign.center,
@@ -84,7 +84,7 @@ class QuizPageState extends State<QuizPage> {
                 const SeparatorLine(),
                 const SizedBox(height: 18),
                 SizedBox(
-                    width: width / 1.3,
+                    width: width / 1.4,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -170,7 +170,8 @@ class QuizPageState extends State<QuizPage> {
           const SizedBox(height: 18),
           Text(
               '${currentQuestion.explanation}',
-              textAlign: TextAlign.center
+              textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16),
           ),
           const SeparatorLine(),
         ],
