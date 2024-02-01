@@ -34,7 +34,7 @@ class FirstPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                width: width / 1.17,
+                                width: width - 58,
                                 height: 410,
                                 child: Image.asset(
                                   'images/questions.jpg',
