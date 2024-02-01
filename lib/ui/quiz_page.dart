@@ -200,7 +200,7 @@ class QuizPageState extends State<QuizPage> {
   }
 
   // function to pass to the next question (triggered on close of showAnswer alert)
-  goNext () {
+  void goNext () {
     if (currentQuestionIndex >= questionData.questionList.length - 1) {
       showDialog(
         barrierDismissible: false,
