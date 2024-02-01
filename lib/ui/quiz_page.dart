@@ -54,13 +54,13 @@ class QuizPageState extends State<QuizPage> {
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.deepPurple[200],
-                          radius: 144,
+                          radius: 118,
                         ),
                         CircleAvatar(
                             backgroundColor: Colors.deepPurple[100],
                             foregroundImage:
                             AssetImage(currentQuestion.getImage()),
-                            radius: 146
+                            radius: 120
                         )
                       ],
                     ),
@@ -76,7 +76,7 @@ class QuizPageState extends State<QuizPage> {
                         child: Text(
                           currentQuestion.question,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                       ),
                     ),
