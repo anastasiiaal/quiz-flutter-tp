@@ -60,7 +60,8 @@ class QuizPageState extends State<QuizPage> {
                             backgroundColor: Colors.deepPurple[100],
                             foregroundImage:
                             AssetImage(currentQuestion.getImage()),
-                            radius: 146)
+                            radius: 146
+                        )
                       ],
                     ),
                   ),
@@ -126,11 +127,13 @@ class QuizPageState extends State<QuizPage> {
                             ),
                             child: const Padding(
                               padding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-                              child: Text('👎🏻', style: TextStyle(
+                              child: Text('👎🏻',
+                                style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold
-                              )),
+                                )
+                              ),
                             ),
                           ),
                         ]
@@ -154,7 +157,7 @@ class QuizPageState extends State<QuizPage> {
       gifToShow = 'images/oui.gif';
     }
     if (currentQuestionIndex >= questionData.questionList.length - 1) {
-      buttonText = "Résultats .. 👀";
+      buttonText = "Résultats.. 👀";
     }
 
     return AlertDialog(

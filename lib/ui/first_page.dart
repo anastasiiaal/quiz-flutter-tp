@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_flutter_tp/ui/quiz_page.dart';
 
-class FirstPage extends StatefulWidget {
+class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
 
-  @override
-  FirstPageState createState() => FirstPageState();
-}
-
-class FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
